@@ -5,8 +5,8 @@
 
 ## 2. -Wanneer gebruik je meerdere threads?
     Om een taak parallel uit te voeren (optimalisatie)
-	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 cores, elke core voert dan 2.500 iteraties uit. Dit is voornamelijk
-	het geval bij GPU parallelisation.
+	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 cores, elke core voert dan 2.500 iteraties uit.
+	Dit is voornamelijk het geval bij GPU parallelisation.
 	
    - Om een taak die langer duurt in de achtergrond te laten uit voeren zonder de huidige thread er op te laten wachten.
 	Bijvoorbeeld: Je wilt een file van disk lezen, dit lezen duurt een tijd voor de harde schrijf. In de tussentijd moet de 
@@ -17,7 +17,7 @@
 ## 3.Wat zijn drie veel voorkomende problemen bij mutithreaded applications? Waardoor ontstaan ze? 
     
     1. Deadlocks, dit onstaat wanneer bijv. als je 2 schatkisten hebt, A en B.
-	En om A te openen heb je de sleutel in B nodig en om B te openen heb je de 	sleutel in A nodig. Op deze manier kan je nooit een kist openen.
+	En om A te openen heb je de sleutel in B nodig en om B te openen heb je de sleutel in A nodig. Op deze manier kan je nooit een kist openen.
 	Dit is ook met Threads. Als ThreadA lockA in beheer heeft en probeert lockB te beheren terwijl ThreadB lockB in beheer heeft
 	en lockA probeert in beheer te krijgen. Op deze manier, worden hun eigen locks nooit geunlocked en wachten de threads oneindig op elkaar.
    
@@ -73,15 +73,17 @@
        x = x + 1; 
        //unlock x
     }
-    
-    
-    
+            
 ## Bronnen
 
 https://rmdiscala.developpez.com/cours/LesChapitres.html/Java/Cours3/Chap3.3.htm
+
 https://fr.wikipedia.org/wiki/Thread_(informatique)
+
 http://tutorials.jenkov.com/java-concurrency/synchronized.html
+
 https://stackoverflow.com/questions/34510/what-is-a-race-condition
+
 https://www.ni.com/nl-nl/support/documentation/supplemental/07/differences-between-multithreading-and-multitasking-for-programm.html
 
 
