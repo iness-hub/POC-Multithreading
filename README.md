@@ -46,7 +46,7 @@
 
 ## 6. Wat is in dit kader een racing condition? Hoe zou je dit kunnen voorkomen?
    Een racing condition onstaat wanneer twee of meer threads toegang hebben tot gedeelde gegevens en ze deze tegelijkertijd proberen te wijzigen.
-   Race condition kunnen vorkomen worden een soort vergrendelingsmechanisme toe te passen vóór de code die toegang heeft tot de gedeelde bron
+   Race condition kunnen voorkomen worden door een soort vergrendelingsmechanisme toe te passen op de gedeelde gegevens.
     
     Voorbeeld :
     Stel je voor dat je 10 threads hebt die het volgende uitvoeren :
