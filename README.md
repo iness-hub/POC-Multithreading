@@ -5,12 +5,11 @@
 
 ## 2. -Wanneer gebruik je meerdere threads?
    - Om een taak parallel uit te voeren (optimalisatie)
-	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 cores, elke core voert dan 2.500 iteraties uit. Dit is voornamelijk
-	het geval bij GPU parallelisation.
+	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 threads, elke thread voert dan 2.500 iteraties uit. 
 	
    - Om een taak die langer duurt in de achtergrond te laten uit voeren zonder de huidige thread er op te laten wachten.
 	Bijvoorbeeld: Je wilt een file van disk lezen, dit lezen duurt een tijd voor de harde schrijf. In de tussentijd moet de 
-	calling thread (CPU) wachten op het resultaat. Het is hierin dus slimmer om het laten lezen te doen in een workerthread
+	calling thread wachten op het resultaat. Het is hierin dus slimmer om het laten lezen te doen in een workerthread
 	zodat de huidige thread (calling thread) kan doorgaan en niet hoeft te wachten.
 	
 
@@ -34,7 +33,7 @@
     heap memory
 ## Hoe is dit verschillend in een multithreaded application?
    De heap memory is gedeeld over alle threads en hier is een locking mechanisme nodig.
-   In een multithreaded applicatie, kunnen threads tegelijkertijd memory opvragen of teruggeven. Bij dit proces komt een aantal administratieve taken kijken, zoals
+   In een multithreaded applicatie, kunnen threads tegelijkertijd memory opvragen of teruggeven. Bij dit proces komt een aantal takente bekijken, zoals
    bijhouden wat het volgende nieuwe vrije blok geheugen is, wat bezet is, etc.
    Deze administratie moet atomisch afgehandeld worden anders zou het kunnen zijn dat bijv Thread A een blok geheugen opvraagt die Thread B ook krijgt toegewezen
    omdat de ptr die verwijst naar een vrij blok niet atomisch is geupdate.
