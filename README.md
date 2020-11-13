@@ -73,31 +73,7 @@
        //unlock x
     }
     
-    Voorbeeld :
-    Stel je voor dat je 10 threads hebt die het volgende uitvoeren :
-       
-    for ( int i = 0; i < 10000000; i++ )
-    {
-       x = x + 1; 
-    }
-    
-    Om ervoor te zorgen dat elke thread de waarde van x verhoogt, ze moeten het volgende doen: 
-    
-    Retrieve the value of x
-    Add 1 to this value
-    Store this value to x
-    
-    Elke thread kan op elk moment bij elke stap in dit proces zijn.
-    De waarde van x kan worden gewijzigd door een andere thread gedurende de tijd tussen x wordt gelezen en wanneer het wordt teruggeschreven
-        
-    We plaatsten een locking rond de gedeelde gegevens om ervoor te zorgen dat slechts één thread tegelijk toegang heeft tot x.
-       
-    for ( int i = 0; i < 10000000; i++ )
-    {
-       //lock x
-       x = x + 1; 
-       //unlock x
-    }
+   }
             
 ## Bronnen
 
