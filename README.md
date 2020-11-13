@@ -34,7 +34,7 @@
     heap memory
 ## Hoe is dit verschillend in een multithreaded application?
    De heap memory is gedeeld over alle threads en hier is een locking mechanisme nodig.
-   In een multithreaded applicatie, kunnen threads tegelijkertijd memory opvragen of teruggeven. Bij dit proces komt een aantal administratieve taken kijken, zoals
+   In een multithreaded applicatie, kunnen threads tegelijkertijd memory opvragen of teruggeven. Bij dit proces komt een aantal takente bekijken, zoals
    bijhouden wat het volgende nieuwe vrije blok geheugen is, wat bezet is, etc.
    Deze administratie moet atomisch afgehandeld worden anders zou het kunnen zijn dat bijv Thread A een blok geheugen opvraagt die Thread B ook krijgt toegewezen
    omdat de ptr die verwijst naar een vrij blok niet atomisch is geupdate.
