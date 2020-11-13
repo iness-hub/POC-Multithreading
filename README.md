@@ -4,9 +4,9 @@
 
 
 ## 2. -Wanneer gebruik je meerdere threads?
-    Om een taak parallel uit te voeren (optimalisatie)
-	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 cores, elke core voert dan 2.500 iteraties uit.
-	Dit is voornamelijk het geval bij GPU parallelisation.
+   - Om een taak parallel uit te voeren (optimalisatie)
+	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 cores, elke core voert dan 2.500 iteraties uit. Dit is voornamelijk
+	het geval bij GPU parallelisation.
 	
    - Om een taak die langer duurt in de achtergrond te laten uit voeren zonder de huidige thread er op te laten wachten.
 	Bijvoorbeeld: Je wilt een file van disk lezen, dit lezen duurt een tijd voor de harde schrijf. In de tussentijd moet de 
@@ -15,9 +15,9 @@
 	
 
 ## 3.Wat zijn drie veel voorkomende problemen bij mutithreaded applications? Waardoor ontstaan ze? 
-    
-    1. Deadlocks, dit onstaat wanneer bijv. als je 2 schatkisten hebt, A en B.
-	En om A te openen heb je de sleutel in B nodig en om B te openen heb je de sleutel in A nodig. Op deze manier kan je nooit een kist openen.
+  
+   1. Deadlocks, dit onstaat wanneer bijv. als je 2 schatkisten hebt, A en B.
+	En om A te openen heb je de sleutel in B nodig en om B te openen heb je de 	sleutel in A nodig. Op deze manier kan je nooit een kist openen.
 	Dit is ook met Threads. Als ThreadA lockA in beheer heeft en probeert lockB te beheren terwijl ThreadB lockB in beheer heeft
 	en lockA probeert in beheer te krijgen. Op deze manier, worden hun eigen locks nooit geunlocked en wachten de threads oneindig op elkaar.
    
@@ -27,8 +27,8 @@
 	Bijv, je kunt meerdere systemen in hun eigen threads laten werken, of allerlei taken opsplitsen in jobs
 	bijv het laden van een plaatje of uitrekenen van een iets kun je in aparte taken/jobs opdelen.
 	Echter, de interactie tussen de taken wordt een stuk complexer omdat overal rekening gehouden dient te worden met access vanuit meerdere threads en ook de afhankelijkheid
-	van taken onderling maakt dit process ingewikkeld. Bijv. TaakC kan alleen uitgevoerd worden als TaakA  en TaakB klaar zijn, maar TaakA en TaakB kunnen wel naast elkaar 
-	uitgevoerd worden want die zijn niet afhankelijk van elkaar.
+	van taken onderling maakt dit process ingewikkeld. Bijv. TaakC kan alleen uitgevoerd worden als TaakA  en TaakB klaar zijn, maar TaakA en TaakB kunnen wel naast elkaar uitgevoerd worden want die zijn niet
+	afhankelijk van elkaar.
 
 ## 4. Hoe wordt het onderdeel genoemd waar objecten in het geheugen worden geplaatst? 
     heap memory
@@ -42,11 +42,37 @@
 ## 5. Hoe wordt het onderdeel genoemd waar methoden worden uitgevoerd en primitive types in het geheugen worden geplaatst?
     de stack
 ## Hoe is dit verschillend in een multithreaded application?
-     Elke thread heeft eigen stack memory, daardoor kan er zonder locking mechanisme data gealloceerd worden in de thread.
+   Elke thread heeft eigen stack memory, daardoor kan er zonder locking mechanisme data gealloceerd worden in de thread.
 
 ## 6. Wat is in dit kader een racing condition? Hoe zou je dit kunnen voorkomen?
-    Een racing condition onstaat wanneer twee of meer threads toegang hebben tot gedeelde gegevens en ze deze tegelijkertijd proberen te wijzigen.
-    Race condition kunnen vorkomen worden een soort vergrendelingsmechanisme toe te passen vóór de code die toegang heeft tot de gedeelde bron
+   Een racing condition onstaat wanneer twee of meer threads toegang hebben tot gedeelde gegevens en ze deze tegelijkertijd proberen te wijzigen.
+   Race condition kunnen vorkomen worden een soort vergrendelingsmechanisme toe te passen vóór de code die toegang heeft tot de gedeelde bron
+    
+    Voorbeeld :
+    Stel je voor dat je 10 threads hebt die het volgende uitvoeren :
+       
+    for ( int i = 0; i < 10000000; i++ )
+    {
+       x = x + 1; 
+    }
+    
+    Om ervoor te zorgen dat elke thread de waarde van x verhoogt, ze moeten het volgende doen: 
+    
+    Retrieve the value of x
+    Add 1 to this value
+    Store this value to x
+    
+    Elke thread kan op elk moment bij elke stap in dit proces zijn.
+    De waarde van x kan worden gewijzigd door een andere thread gedurende de tijd tussen x wordt gelezen en wanneer het wordt teruggeschreven
+        
+    We plaatsten een locking rond de gedeelde gegevens om ervoor te zorgen dat slechts één thread tegelijk toegang heeft tot x.
+       
+    for ( int i = 0; i < 10000000; i++ )
+    {
+       //lock x
+       x = x + 1; 
+       //unlock x
+    }
     
     Voorbeeld :
     Stel je voor dat je 10 threads hebt die het volgende uitvoeren :
