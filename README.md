@@ -5,12 +5,11 @@
 
 ## 2. -Wanneer gebruik je meerdere threads?
    - Om een taak parallel uit te voeren (optimalisatie)
-	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 cores, elke core voert dan 2.500 iteraties uit. Dit is voornamelijk
-	het geval bij GPU parallelisation.
+	Bijvoorbeeld: een for loop met 10.000 iteraties opdelen over 4 threads, elke thread voert dan 2.500 iteraties uit. 
 	
    - Om een taak die langer duurt in de achtergrond te laten uit voeren zonder de huidige thread er op te laten wachten.
 	Bijvoorbeeld: Je wilt een file van disk lezen, dit lezen duurt een tijd voor de harde schrijf. In de tussentijd moet de 
-	calling thread (CPU) wachten op het resultaat. Het is hierin dus slimmer om het laten lezen te doen in een workerthread
+	calling thread wachten op het resultaat. Het is hierin dus slimmer om het laten lezen te doen in een workerthread
 	zodat de huidige thread (calling thread) kan doorgaan en niet hoeft te wachten.
 	
 
